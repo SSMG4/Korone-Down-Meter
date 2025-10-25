@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Korone Down Meter</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <div class="logo-wrap">
+        <img id="logo" src="logo.png" alt="Korone Logo" onerror="this.style.display='none'"/>
+      </div>
+
+      <div class="title-wrap">
+        <h1>Korone Down Meter</h1>
+        <p class="sub">Monitoring Korone for the phrase "site is currently down"</p>
+      </div>
+    </header>
+
+    <section class="status-card">
+      <div class="status-row">
+        <div>
+          <div class="label">Current status</div>
+          <div id="status" class="status unknown">Checking…</div>
+        </div>
+
+        <div>
+          <div class="label">Down count</div>
+          <div id="count" class="count">0</div>
+        </div>
+      </div>
+
+      <div class="meta-row">
+        <div class="meta-item">
+          <div class="label">Last checked</div>
+          <div id="lastChecked">—</div>
+        </div>
+
+        <div class="meta-item">
+          <div class="label">Detection phrase</div>
+          <div class="muted">site is currently down</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="checkBtn">Check now</button>
+        <button id="resetBtn" class="danger">Reset counter</button>
+        <button id="forceIncrementBtn">Force +1</button>
+      </div>
+
+      <div class="proxy-area">
+        <label class="label">CORS proxy (optional)</label>
+        <input id="proxyInput" type="text" placeholder="https://api.allorigins.win/raw?url=" />
+        <div class="hint">If cross-origin fetches fail on GitHub Pages, set a CORS proxy here (example: https://api.allorigins.win/raw?url=)</div>
+      </div>
+
+      <div class="logo-set">
+        <label class="label">Logo URL (optional)</label>
+        <input id="logoUrlInput" type="text" placeholder="https://example.com/your-logo.png" />
+        <button id="setLogoBtn">Set logo</button>
+        <div class="hint">Or place a file named <code>logo.png</code> in the repo root.</div>
+      </div>
+
+      <details class="debug">
+        <summary>Debug / last fetch snippet</summary>
+        <pre id="snippet">No snippet yet.</pre>
+      </details>
+    </section>
+
+    <footer class="footer">
+      <small>
+        This is a static GitHub Pages site. The script attempts to fetch the target page and look for the text
+        "site is currently down". Because of browser cross-origin rules, you may need to set a CORS proxy (see README).
+      </small>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
