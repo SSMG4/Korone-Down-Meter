@@ -7,7 +7,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css" />
   <!-- Chart.js CDN for simple graphs -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
 </head>
 <body>
   <main class="container">
@@ -18,7 +18,7 @@
 
       <div class="title-wrap">
         <h1>Korone Down Meter</h1>
-        <p class="sub">Monitor a site for "down" signs and track occurrences</p>
+        <p class="sub">Monitoring https://pekora.zip — automatic checks and daily history</p>
       </div>
     </header>
 
@@ -31,21 +31,13 @@
           <div class="label small">Last checked</div>
           <div id="lastChecked">—</div>
 
-          <div class="label small">Detection phrase</div>
-          <input id="phraseInput" type="text" value="site is currently down" />
+          <div class="label small">Monitored URL</div>
+          <div id="targetDisplay" class="muted">https://pekora.zip</div>
         </div>
 
         <div class="status-right">
-          <div class="label">Down count</div>
+          <div class="label">Down count (total)</div>
           <div id="count" class="count">0</div>
-        </div>
-      </div>
-
-      <div class="meta-row">
-        <div class="meta-item fullwidth">
-          <div class="label">Target URL</div>
-          <input id="targetInput" type="text" placeholder="https://example.com/" value="https://pekora.zip" />
-          <div class="hint">Set the page to monitor (protocol required)</div>
         </div>
       </div>
 
@@ -59,14 +51,14 @@
       <div class="proxy-area">
         <label class="label">CORS proxy (optional)</label>
         <input id="proxyInput" type="text" placeholder="https://api.allorigins.win/raw?url=" />
-        <div class="hint">If cross-origin fetches fail, set a CORS proxy here (or leave blank to auto-try built-in proxies).</div>
+        <div class="hint">If browser blocks cross-origin fetches, set a proxy prefix (leave blank to auto-try built-in proxies).</div>
         <div class="proxy-actions">
           <button id="testProxyBtn">Test proxy</button>
         </div>
       </div>
 
       <div class="graph-area">
-        <canvas id="historyChart" height="120"></canvas>
+        <canvas id="historyChart" height="160"></canvas>
       </div>
 
       <details class="debug" id="debugPanel">
@@ -77,8 +69,9 @@
 
     <footer class="footer">
       <small>
-        This is a static GitHub Pages site. The script attempts to fetch the target page and look for the configured detection phrase.
-        The page will try direct fetches first and then fall back to public CORS proxies automatically. Check the debug panel for details.
+        Static GitHub Pages frontend. The script tries a direct fetch first then falls back to public CORS proxies.
+        Detection uses multiple heuristics (HTTP status code ranges, Cloudflare challenge detection and page content).
+        History is aggregated per-day and displayed on the chart.
       </small>
     </footer>
   </main>
