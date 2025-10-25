@@ -16,7 +16,7 @@
 
       <div class="title-wrap">
         <h1>Korone Down Meter</h1>
-        <p class="sub">Monitoring Korone for the phrase "site is currently down"</p>
+        <p class="sub">Monitoring Korone for down signs</p>
       </div>
     </header>
 
@@ -54,14 +54,7 @@
       <div class="proxy-area">
         <label class="label">CORS proxy (optional)</label>
         <input id="proxyInput" type="text" placeholder="https://api.allorigins.win/raw?url=" />
-        <div class="hint">If cross-origin fetches fail on GitHub Pages, set a CORS proxy here (example: https://api.allorigins.win/raw?url=)</div>
-      </div>
-
-      <div class="logo-set">
-        <label class="label">Logo URL (optional)</label>
-        <input id="logoUrlInput" type="text" placeholder="https://example.com/your-logo.png" />
-        <button id="setLogoBtn">Set logo</button>
-        <div class="hint">Or place a file named <code>logo.png</code> in the repo root.</div>
+        <div class="hint">If cross-origin fetches fail, set a CORS proxy here (example: https://api.allorigins.win/raw?url=)</div>
       </div>
 
       <details class="debug">
